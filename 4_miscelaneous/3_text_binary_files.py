@@ -57,7 +57,10 @@ except IOError as e:
 
 # -------------------------------------
 
-# If you're absolutely sure that the file's length is safe and you can read the whole file to the memory at once, you can do it - the read() function, invoked without any arguments or with an argument that evaluates to None, will do the job for you.
+# If you're absolutely sure that the file's length is safe and 
+# you can read the whole file to the memory at once,
+# you can do it - the read() function, 
+# invoked without any arguments or with an argument that evaluates to None, will do the job for you.
 
 from os import strerror
 
@@ -85,7 +88,8 @@ except IOError as e:
 # not a bunch of characters, the readline() method will help you with that.
 
 # The method tries to read a complete line of text from the file, 
-# and returns it as a string in the case of success. Otherwise, it returns an empty string.
+# and returns it as a string in the case of success. 
+# Otherwise, it returns an empty string.
 
 from os import strerror
 
@@ -437,12 +441,12 @@ dst.close()
 # -------------------------------------
 # 1. To read a file’s contents, the following stream methods can be used:
 
-# read() is able to read the whole file at once;
-# read(number) – reads the number characters/bytes from the file and returns them as a string; 
-# readline() – reads a single line from the text file;
-# readlines() – is able to read all lines at once;
-# readlines(number) – reads the number lines from the text file;
-# readinto(bytearray) – reads the bytes from the file and fills the bytearray with them;
+# read()                - is able to read the whole file at once;
+# read(number)          – reads the number of characters/bytes from the file and returns them as a string; 
+# readlines()           – is able to read all lines at once;
+# readline()            – reads a single line from the text file;
+# readlines(number)     – reads the number lines from the text file;
+# readinto(bytearray)   – reads the bytes from the file and fills the bytearray with them;
 
 # -------------------------------------
 

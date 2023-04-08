@@ -44,8 +44,10 @@ for i in Fib(10):
 
 # __iter__() which should return the object itself and which is invoked once 
 # (it's needed for Python to successfully start the iteration)
-# __next__() which is intended to return the next value (first, second, and so on) of the desired series -
-#  it will be invoked by the for/in statements in order to pass through the next iteration; 
+
+# __next__() which is intended to return the next value (first, second, and so on) of the desired series 
+# - it will be invoked by the for/in statements in order to pass through the next iteration; 
+
 # if there are no more values to provide, the method should raise the StopIteration exception
 # __init__
 # __iter__
@@ -204,8 +206,7 @@ print(t)
 # [1, 2, 4, 8, 16]
 # -------------------------------------
 # The list() function
-# The list() function can transform a series of subsequent generator 
-# invocations into a real list:
+# The list() function can transform a series of subsequent generator invocations into a real list:
 def powers_of_2(n):
     power = 1
     for i in range(n):
@@ -296,14 +297,16 @@ the_list = [1 if x % 2 == 0 else 0 for x in range(10)]
 print(the_list)
 # [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
 
-the_list = [1 for x in range(10) if x % 2 == 0] # without else
+the_list = [1 for x in range(10) if x % 2 == 0]     # without else
 # [1, 1, 1, 1, 1]
 
 # -------------------------------------
 # List comprehensions vs. generators
 # Just one change can turn any list comprehension into a generator.
-# Now look at the code below and see if you can find the detail that 
-# turns a list comprehension into a generator:
+# replace [] with ()
+# It's the parentheses. 
+# The brackets make a comprehension, the parentheses make a generator.
+
 the_list        = [1 if x % 2 == 0 else 0 for x in range(10)]
 the_generator   = (1 if x % 2 == 0 else 0 for x in range(10))
 
@@ -317,9 +320,6 @@ print()
 
 # 1 0 1 0 1 0 1 0 1 0 
 # 1 0 1 0 1 0 1 0 1 0 
-
-
-# It's the parentheses. The brackets make a comprehension, the parentheses make a generator.
 
 
 # len(the_list) will evaluate to 10. Clear and predictable. 
@@ -391,7 +391,7 @@ def poly(x):
     return 2 * x**2 - 4 * x + 2
 
 
-print_function(poly, [x for x in range(-2, 3)])
+print_function(poly, [x for x in range(-2, 3)])     # passing the function as an argument
 
 # f(-2)=18
 # f(-1)=8
@@ -426,14 +426,12 @@ map(function, list)
 
 list_1 = [x for x in range(5)]
 list_2 = list(map(lambda x: 2 ** x, list_1))
-print(list_2)
+print(list_2)                                   # [1, 2, 4, 8, 16]
 
 for x in map(lambda x: x * x, list_2):
-    print(x, end=' ')
+    print(x, end=' ')                           # 1 4 16 64 256 
 print()
 
-# [1, 2, 4, 8, 16]
-# 1 4 16 64 256 
 
 # -------------------------------------
 # the second map() argument may be any entity that can be iterated (e.g., a tuple, or just a generator)
@@ -526,8 +524,8 @@ def make_closure(par):
     return power
 
 
-fsqr = make_closure(2)
-fcub = make_closure(3)
+fsqr = make_closure(2)      # squared
+fcub = make_closure(3)      # cubed         
 
 for i in range(5):
     print(i, fsqr(i), fcub(i))
