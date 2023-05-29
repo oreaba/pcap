@@ -163,6 +163,7 @@ print(obj)
 # self argument to the method being invoked - this is why it's possible to activate the superclass constructor using only one argument.
 # Note: you can use this mechanism not only to invoke the superclass constructor, 
 # but also to get access to any of the resources available inside the superclass.
+# COOL AND confront with SOLID
 
 # -------------------------------------
 # Testing properties: class variables.
@@ -186,7 +187,7 @@ class Super:
 class Sub(Super):
     def __init__(self):
         super().__init__()
-        self.subVar = 12
+        self.subVar = 12            # we are extending the functionality on the base __init__
 
 obj = Sub()
 
@@ -353,29 +354,29 @@ two.doanything()    # do_it from Two
 import time
 
 class Vehicle:
-    def change_direction(left, on):
+    def change_direction(self, left, on):
         pass
 
-    def turn(left):
-        change_direction(left, True)
+    def turn(self, left):
+        self.change_direction(left, True)
         time.sleep(0.25)
-        change_direction(left, False)
+        self.change_direction(left, False)
 
 
 class TrackedVehicle(Vehicle):
-    def control_track(left, stop):
+    def control_track(self, left, stop):
         pass
 
-    def change_direction(left, on):
-        control_track(left, on)
+    def change_direction(self, left, on):
+        self.control_track(left, on)
 
 
 class WheeledVehicle(Vehicle):
     def turn_front_wheels(left, on):
         pass
 
-    def change_direction(left, on):
-        turn_front_wheels(left, on)
+    def change_direction(self, left, on):
+        self.turn_front_wheels(left, on)
 
 # This is how polymorphism helps the developer to keep the code clean and consistent.
 
@@ -557,7 +558,9 @@ object.m_top()
 
 
 # -------------------------------------
-# 1. A method named __str__() is responsible for converting an object's contents into a (more or less) readable string. You can redefine it if you want your object to be able to present itself in a more elegant form. For example:
+# 1. A method named __str__() is responsible for converting an object's contents into a (more or less) readable string. 
+# You can redefine it if you want your object to be able to present itself in a more elegant form. 
+# For example:
 
 
 class Mouse:
@@ -598,7 +601,9 @@ class LabMouse(Mouse):
 
 
 mickey = Mouse()
+lmickey = LabMouse()
 print(isinstance(mickey, Mouse), isinstance(mickey, LabMouse))  # Prints "True False".
+print(isinstance(lmickey, Mouse))  # Prints "True".
 
 
 

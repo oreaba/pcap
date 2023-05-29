@@ -295,17 +295,19 @@ the_list = [1 if x % 2 == 0 else 0 for x in range(10)]
 
 print(the_list)
 # [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
-
+# -------------------------------------
 the_list = [1 for x in range(10) if x % 2 == 0] # without else
 # [1, 1, 1, 1, 1]
+# -------------------------------------
+the_list = [x in range(10) if x % 2 == 0 else 0]
 
 # -------------------------------------
 # List comprehensions vs. generators
 # Just one change can turn any list comprehension into a generator.
 # Now look at the code below and see if you can find the detail that 
 # turns a list comprehension into a generator:
-the_list        = [1 if x % 2 == 0 else 0 for x in range(10)]
-the_generator   = (1 if x % 2 == 0 else 0 for x in range(10))
+the_list        = [1 if x % 2 == 0 else 0 for x in range(100000000)]    # takes about 4 seconds     # get them all !!
+the_generator   = (1 if x % 2 == 0 else 0 for x in range(100000000))    # takes 0 seconds           # get them when we need them! one by one
 
 for v in the_list:
     print(v, end=" ")
@@ -425,10 +427,10 @@ lambda x: 2 * x**2 - 4 * x + 2
 map(function, list)
 
 list_1 = [x for x in range(5)]
-list_2 = list(map(lambda x: 2 ** x, list_1))
+list_2 = list(map(lambda b: 2 ** b, list_1))    # use list or generator as 2nd arg
 print(list_2)
 
-for x in map(lambda x: x * x, list_2):
+for x in map(lambda b: b * b, list_2):          # use list or generator as 2nd arg
     print(x, end=' ')
 print()
 
