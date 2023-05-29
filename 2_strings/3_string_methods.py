@@ -21,22 +21,22 @@ print('[' + 'Beta'.center(2) + ']')     # [Beta]
 print('[' + 'Beta'.center(4) + ']')     # [Beta]
 print('[' + 'Beta'.center(6) + ']')     # [ Beta ]
 
-# put this string in the center of n astrisks
+# put this string in the center of n astrisks (not white spacs)
 print('[' + 'gamma'.center(20, '*') + ']')  # [*******gamma********]
 
 
 # -------------------------------------
 # Demonstrating the endswith() method:
 if "epsilon".endswith("on"):
-    print("yes")
+    print("yes")                # yes
 else:
     print("no")
 
 t = "zeta"
-print(t.endswith("a"))
-print(t.endswith("A"))
-print(t.endswith("et"))
-print(t.endswith("eta"))
+print(t.endswith("a"))          # True
+print(t.endswith("A"))          # False
+print(t.endswith("et"))         # False
+print(t.endswith("eta"))        # True
 
 
 
@@ -55,16 +55,16 @@ print("Year2019".isdigit()) # False
 # -------------------------------------
 
 # Demonstrating the isalnum() method:
-# must be either: caracter or digit (or combinations) ONLY
+# must be either: character or digit (or combinations) ONLY
 print('lambda30'.isalnum()) # True
-print('lambda'.isalnum())   # True
+print('lambda'.isalnum())   # True          # tricky
 print('30'.isalnum())       # True
-print('@'.isalnum())        # False
-print('lambda_30'.isalnum())# False
-print(''.isalnum())         # False
+print('@'.isalnum())        # False         # special keys are not characters
+print('lambda_30'.isalnum())# False         # special keys are not characters
+print(''.isalnum())         # False         # empty is not characters
 
 t = 'Six lambdas'           
-print(t.isalnum())              # False         white space is not a character
+print(t.isalnum())              # False     # white space is not a character
 
 t = 'ΑβΓδ'
 print(t.isalnum())              # True
@@ -143,7 +143,7 @@ print("This is it!".replace("is", "are", 2))    # Thare are it!     # replcae tw
 # -------------------------------------
 # Demonstrating the find() method:
 print("Eta".find("ta"))     # 1
-print("Eta".find("mma"))    # -1        does not crash the program - .index('notfound') does
+print("Eta".find("mma"))    # -1        does not crash the program - ''.index('notfound') does
 
 # it's safer than index() - 
 # it doesn't generate an error for an argument containing a non-existent substring (it returns -1 then)
@@ -157,6 +157,8 @@ print(t.find('ha'))         # -1 -------> because this substring is not found
 
 
 # -------------------------------------
+# start searching from a specific index
+
 print('kappa'.find('a', 2))     # 4  -----> it ignores a at 1 because we start at 2
 # The second argument specifies the index at which the search will be started 
 # (it doesn't have to fit inside the string).
@@ -169,7 +171,7 @@ the Information Age in the mid-1980s by the Aldus Corporation,
 which employed it in graphics and word-processing templates
 for its desktop publishing program PageMaker (from Wikipedia)"""
 
-fnd = the_text.find('the')
+fnd = the_text.find('the')          # might be used in Motadaber in Python (with highlighting found text)
 while fnd != -1:
     print(fnd)
     fnd = the_text.find('the', fnd + 1)
@@ -202,6 +204,14 @@ print("tau tau tau".rfind("ta", 3, 9))      # 4
 
 
 # -------------------------------------
+# Demonstrating the strip() method:
+# The strip() method combines the effects caused by rstrip() and lstrip() - 
+# it makes a new string lacking all the leading and trailing whitespaces.
+print("[" + "   aleph   ".strip() + "]")    # [aleph] # string must not start or end with space
+print("alhephhhh".strip('h'))    # [alhep] # string must not start or end with h
+print("mohamedhamdy".strip('mdoy')) # hamedha string must not start or end with characters 'm' 'd' 'o' 'y'
+# -------------------------------------
+# -------------------------------------
 # Demonstrating the lstrip() method: - the input is characters not substring
 # returns a newly created string formed from the original one by removing all leading whitespaces.
 print("[" + " tau ".lstrip() + "]")     # [tau ] removes leading white space character from the beginning
@@ -217,21 +227,14 @@ print("[" + " upsilon ".rstrip() + "]") # [ upsilon]
 print("cisco.com".rstrip(".com"))       # cis - removes '.' or 'c' or 'o' or 'm' from the end  -- so tricky
 # a string must not end with any of those characters specified in the string .com#
 
-# -------------------------------------
-# Demonstrating the strip() method:
-# The strip() method combines the effects caused by rstrip() and lstrip() - it makes a new string lacking all the leading and trailing whitespaces.
-print("[" + "   aleph   ".strip() + "]")    # [aleph] # string must not start or end with space
-print("alhephhhh".strip('h'))    # [alhep] # string must not start or end with h
-print("mohamedhamdy".strip('mdoy')) # hamedha string must not start or end with characters 'm' 'd' 'o' 'y'
-# -------------------------------------
 
 # Demonstrating the split() method:
 #  it splits the string and builds a list of all detected substrings.
 #  The method assumes that the substrings are delimited by whitespaces
 #  the spaces don't take part in the operation, and aren't copied into the resulting list.
 print("phi       chi\npsi".split())     # ['phi', 'chi', 'psi']         endline is considered a white space
-print("mohammad".split())               # ['mohammad']      because there are no spaces
-print("ali,ahmed".split(','))               # ['ali', 'ahmed']
+print("mohammad".split())               # ['mohammad']                  because there are no spaces
+print("ali,ahmed".split(','))           # ['ali', 'ahmed']              use , instead of space
 
 # -------------------------------------
 
@@ -254,20 +257,20 @@ print("I know that I know nothing.".swapcase())
 # center() – centers the string inside the field of a known length;
 # count() – counts the occurrences of a given character;
 
-# capitalize() – changes all string letters to capitals;
-# lower() – converts all the string's letters into lower-case letters;
-# upper() – converts all the string's letter into upper-case letters.
-# title() – makes the first letter in each word upper-case;
-# swapcase() – swaps the letters' cases (lower to upper and vice versa)
+# capitalize()  – changes all string letters to capitals;
+# lower()       – converts all the string's letters into lower-case letters;
+# upper()       – converts all the string's letter into upper-case letters.
+# title()       – makes the first letter in each word upper-case;
+# swapcase()    – swaps the letters' cases (lower to upper and vice versa)
 
-# find() – finds a substring starting from the start of the string;
-# rfind() – finds a substring starting from the end of the string;
-# split() – splits the string into a substring using a given delimiter;
-# join() – joins all items of a tuple/list into one string;
+# find()    – finds a substring starting from the start of the string;
+# rfind()   – finds a substring starting from the end of the string;
+# split()   – splits the string into a substring using a given delimiter;
+# join()    – joins all items of a tuple/list into one string;
 # replace() – replaces a given substring with another;
-# lstrip() – removes the white characters from the beginning of the string;
-# rstrip() – removes the trailing white spaces from the end of the string;
-# strip() – removes the leading and trailing white spaces;
+# lstrip()  – removes the white characters from the beginning of the string;
+# rstrip()  – removes the trailing white spaces from the end of the string;
+# strip()   – removes the leading and trailing white spaces;
 # -------------------------------------
 # 2. String content can be determined using the following methods (all of them return Boolean values):
 # isupper() – does the string consists only of upper-case letters?

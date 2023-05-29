@@ -95,7 +95,7 @@ try:
 except:
     print("failed")
 
-obj._Classy__hidden()
+obj._Classy__hidden()       # forciebly access (and call) the private method
 
 
 # visible
@@ -137,22 +137,20 @@ print(type(obj).__name__)
 # Classy
 
 print(obj.__name__)     # __name__ is attribute of the class not the object - an object has no name
-# will cause an error
+# will cause an error   # AttributeError: 'Classy' object has no attribute '__name__'
 # -------------------------------------
 # __module__ is a string, too - it stores the name of the module which contains the definition of the class.
 class Classy:
     pass
 
 
-print(Classy.__module__)
+print(Classy.__module__)    # __main__
 obj = Classy()
-print(obj.__module__)
+print(obj.__module__)       # __main__
 
 
-# __main__
-# __main__
-
-# As you know, any module named __main__ is actually not a module, but the file currently being run.
+# NOTE:
+# any module named __main__ is actually not a module, but the file currently being run.
 # -------------------------------------
 
 class SuperOne:
@@ -175,17 +173,17 @@ def printBases(cls):
     print(')')
 
 
-printBases(SuperOne)
-printBases(SuperTwo)
-printBases(Sub)
+printBases(SuperOne)        # ( object )
+printBases(SuperTwo)        # ( object )
+printBases(Sub)             # ( SuperOne SuperTwo )
 
-# ( object )
-# ( object )
-# ( SuperOne SuperTwo )
 # -------------------------------------
 # introspection, which is the ability of a program to examine the type or properties of an object at runtime;
+# like dir()    or type()
+
 # reflection, which goes a step further, and is the ability of a program to manipulate the 
 # values, properties and/or functions of an object at runtime.
+# like changing values at runtime.
 
 # -------------------------------------
 # Investigating classes
@@ -204,7 +202,7 @@ obj.z = 5
 
 
 def incIntsI(obj):
-    for name in obj.__dict__.keys():
+    for name in obj.__dict__.keys():    # ['a', 'b', 'i', 'ireal', 'integer', 'z']
         if name.startswith('i'):
             val = getattr(obj, name)
             if isinstance(val, int):
@@ -214,7 +212,7 @@ def incIntsI(obj):
 print(obj.__dict__)
 incIntsI(obj)
 print(obj.__dict__)
-
+print(obj.__dict__.values())       # [1, 2, 3, 3.5, 4, 5]
 # {'a': 1, 'integer': 4, 'b': 2, 'i': 3, 'z': 5, 'ireal': 3.5}
 # {'a': 1, 'integer': 5, 'b': 2, 'i': 4, 'z': 5, 'ireal': 3.5}
 
@@ -228,11 +226,12 @@ class Sample:
 obj = Sample()
 obj.myself()
 
-
 # My name is Sample living in a __main__
 
 # -------------------------------------
-# The declaration of the Snake class is given below. Enrich the class with a method named increment(), adding 1 to the __victims property.
+# The declaration of the Snake class is given below. 
+# Enrich the class with a method named increment(), 
+# adding 1 to the __victims property.
 
 class Snake:
     def __init__(self):

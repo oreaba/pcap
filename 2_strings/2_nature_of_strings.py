@@ -3,34 +3,34 @@
 # Example 1
 
 word = 'by'
-print(len(word))
+print(len(word))        # 2
 
 
 # Example 2
 
 empty = ''
-print(len(empty))
+print(len(empty))       # 0
 
 
 # Example 3
 
 i_am = 'I\'m'
-print(len(i_am))
+print(len(i_am))        # 3
 
 # -------------------------------------
-multiline = '''Line #1
-Line #2'''
+multiline = '''my
+name'''
 
-print(len(multiline))
+print(len(multiline))   # 7     \n counts as 1 character
 
 # -------------------------------------
 str1 = 'a'
 str2 = 'b'
 
-print(str1 + str2)
-print(str2 + str1)
-print(5 * 'a')
-print('b' * 4)
+print(str1 + str2)      # ab
+print(str2 + str1)      # ba
+print(5 * 'a')          # aaaaa
+print('b' * 4)          # bbbb
 
 # -------------------------------------
 # Demonstrating the ord() function.
@@ -41,8 +41,7 @@ char_2 = ' '  # space
 print(ord(char_1))  # 97
 print(ord(char_2))  # 32
 
-
-print(ord('B'))  # 66
+print(ord('B'))     # 66
 
 # -------------------------------------
 # Demonstrating the chr() function.
@@ -53,10 +52,10 @@ print(chr(97))
 print(chr(945))
 
 x='a'
-print(chr(ord(x)) == x)
+print(chr(ord(x)) == x)     # True
 
 x=97
-print(ord(chr(x)) == x)
+print(ord(chr(x)) == x)     # True
 
 
 
@@ -66,21 +65,17 @@ print(ord(chr(x)) == x)
 the_string = 'silly walking'
 
 for ix in range(len(the_string)):
-    print(the_string[ix], end=' ')
+    print(the_string[ix], end=' ')  # s i l l y   w a l k i n g
 
-print()
-
-print(the_string[-2])
+print(the_string[-2])               # n
 
 # -------------------------------------
 # Iterating through a string.
 
 the_string = 'silly walks'
 
-for character in the_string:
-    print(character, end=' ')
-
-print()
+for character in the_string:        
+    print(character, end=' ')       # s i l l y   w a l k s 
 
 
 # -------------------------------------
@@ -89,7 +84,7 @@ print()
 alpha = "abcdefg"
 
 # second index is not included.
-print(alpha[1:3])   # bc 
+print(alpha[1:3])   # bc
 print(alpha[3:])    # defg
 print(alpha[:3])    # abc
 print(alpha[3:-2])  # de
@@ -212,7 +207,7 @@ print(len("\n\n"))              # 2
 asterisk = '*'
 plus = "+"
 decoration = (asterisk + plus) * 4 + asterisk
-print(decoration)
+print(decoration)               # *+*+*+*+*
 # -------------------------------------
 
 # note

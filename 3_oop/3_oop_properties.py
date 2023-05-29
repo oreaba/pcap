@@ -92,7 +92,8 @@ class ExampleClass:
         if val % 2 != 0:
             self.a = 1
         else:
-            self.b = 1
+            self.b = 1              # it will never executed - that's why testing is important since 
+                                    # the interpreter will not compile all execution paths on its own.
 
 
 example_object = ExampleClass(1)
@@ -130,18 +131,14 @@ class ExampleClass:
     attr = 1
 
 
-print(hasattr(ExampleClass, 'attr'))
-print(hasattr(ExampleClass, 'prop'))
-
-# True
-# False
+print(hasattr(ExampleClass, 'attr'))        # True
+print(hasattr(ExampleClass, 'prop'))        # False
 
 # -------------------------------------
 class ExampleClass:
     a = 1
     def __init__(self):
         self.b = 2
-
 
 example_object = ExampleClass()
 
@@ -164,8 +161,6 @@ obj = Sample()
 obj.beta = 2  # Another instance variable (existing only inside the "obj" instance.)
 print(obj.__dict__)    # {'alpha': 1, '_Sample__delta': 3, 'beta': 2}
 
-
-
 # -------------------------------------
 class Python:
     population = 1
@@ -174,12 +169,14 @@ class Python:
         self.length_ft = 3
         self.__venomous = False
 
-# population and victims are class variables, while length and __venomous are instance variables (the latter is also private).
+# population and victims are class variables, 
+# while length and __venomous are instance variables (the latter is also private).
 # -------------------------------------
-# You're going to negate the __venomous property of the version_2 object, ignoring the fact that the property is private. How will you do this?
+# You're going to negate the __venomous property of the version_2 object, 
+# ignoring the fact that the property is private. How will you do this?
 version_2 = Python()
-
-version_2._Python__venomous = not version_2._Python__venomous
+version_2._Python__venomous = not version_2._Python__venomous       # Forciebly access the private variable
 # -------------------------------------
-# Write an expression which checks if the version_2 object contains an instance property named constrictor (yes, constrictor!)
-hasattr(version_2, 'constrictor')
+# Write an expression which checks if the version_2 object 
+# contains an instance property named constrictor (yes, constrictor!)
+hasattr(version_2, 'constrictor')       # False

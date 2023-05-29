@@ -108,3 +108,7 @@ f = float(s2)
 print(s1 == s2)
 print(f)
 # -------------------------------------
+# extra:
+my_string = 'datadrivenscience'
+for i in range(my_string):      # TypeError: 'str' object cannot be interpreted as an integer
+     print(i)

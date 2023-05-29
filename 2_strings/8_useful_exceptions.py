@@ -32,7 +32,6 @@ assert None
 # AssertionError
 # Location: BaseException ← Exception ← AssertionError
 
-
 # -------------------------------------
 # This code cannot be terminated !!! hahahaha
 # by pressing Ctrl-C.
@@ -105,7 +104,6 @@ except MemoryError:
 #         ex *= 2
 # except OverflowError:
 #     print('The number is too big.')
-
 
 
 # -------------------------------------

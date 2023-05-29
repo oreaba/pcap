@@ -4,13 +4,9 @@ class Star:
         self.name = name
         self.galaxy = galaxy
 
-
 sun = Star("Sun", "Milky Way")
-print(sun)
-
-# <__main__.Star object at 0x7f1074cc7c50>
-
-# -------------------------------------
+print(sun)          # <__main__.Star object at 0x7f1074cc7c50>
+# -----------------------------------------
 class Star:
     def __init__(self, name, galaxy):
         self.name = name
@@ -21,10 +17,7 @@ class Star:
 
 
 sun = Star("Sun", "Milky Way")
-print(sun)
-
-# Sun in Milky Way
-
+print(sun)          # Sun in Milky Way
 # -------------------------------------
 class Vehicle:
     pass
@@ -36,6 +29,11 @@ class LandVehicle(Vehicle):
 
 class TrackedVehicle(LandVehicle):
     pass
+
+obj = LandVehicle()
+print(obj.__bases__)                # AttributeError 'LandVehicle' object has no attribute '__bases__'
+print(LandVehicle.__bases__)        # (<class '__main__.Vehicle'>,)
+
 
 # The Vehicle class is the superclass for both the LandVehicle and TrackedVehicle classes;
 # The LandVehicle class is a subclass of Vehicle and a superclass of TrackedVehicle at the same time;
@@ -140,7 +138,7 @@ print(obj)
 # My name is Andy.
 
 # -------------------------------------
-class Super:
+class MySuper:
     def __init__(self, name):
         self.name = name
 
@@ -148,19 +146,18 @@ class Super:
         return "My name is " + self.name + "."
 
 
-class Sub(Super):
+class Sub(MySuper):
     def __init__(self, name):
-        super().__init__(name)
-
+        super().__init__(name)  #  which accesses the superclass without needing to know its name
+                                # do not need the 'self' parameter here
 
 obj = Sub("Andy")
 
 print(obj)
-#  which accesses the superclass without needing to know its name:
 
-# super().__init__(name)
 # The super() function creates a context in which you don't have to (moreover, you mustn't) pass the 
-# self argument to the method being invoked - this is why it's possible to activate the superclass constructor using only one argument.
+# self argument to the method being invoked 
+# - this is why it's possible to activate the superclass constructor using only one argument.
 # Note: you can use this mechanism not only to invoke the superclass constructor, 
 # but also to get access to any of the resources available inside the superclass.
 # COOL AND confront with SOLID
@@ -178,7 +175,6 @@ obj = Sub()
 print(obj.subVar)# 2
 print(obj.supVar)# 1
 # -------------------------------------
-
 # Testing properties: instance variables.
 class Super:
     def __init__(self):
@@ -194,6 +190,7 @@ obj = Sub()
 print(obj.subVar)# 12
 print(obj.supVar)# 11
 # -------------------------------------
+# Multilevel Inheritance
 class Level1:
     variable_1 = 100
     def __init__(self):
@@ -213,9 +210,11 @@ class Level2(Level1):
 
 class Level3(Level2):
     variable_3 = 300
+    my2 = 'class var'
     def __init__(self):
         super().__init__()
         self.var_3 = 301
+        self.my2 = 'object var'
 
     def fun_3(self):
         return 302
@@ -226,9 +225,14 @@ obj = Level3()
 print(obj.variable_1, obj.var_1, obj.fun_1())   # 100 101 102
 print(obj.variable_2, obj.var_2, obj.fun_2())   # 200 201 202
 print(obj.variable_3, obj.var_3, obj.fun_3())   # 300 301 302
+print(obj.my2)                                  # object var   | object (instance) variable takes precedence over class variable
 
+# traversing:
+# 1. is there an instance variable called 'var'?
+# 2. is there a class variable called 'var'?
+# 3. go up one level to the super class, and repeat (instance variable then class variable)
 # -------------------------------------
-
+# Multiple Inheritance
 class SuperA:
     var_a = 10
     def fun_a(self):
@@ -250,7 +254,10 @@ obj = Sub()
 print(obj.var_a, obj.fun_a())   # 10 11
 print(obj.var_b, obj.fun_b())   # 20 21
 
+# traverse:
+# we look inside the super classes from the left to right.
 # -------------------------------------
+# multi-level inheritance
 class Level1:
     var = 100
     def fun(self):
@@ -269,7 +276,7 @@ class Level3(Level2):
 
 obj = Level3()
 
-print(obj.var, obj.fun())# 200 201
+print(obj.var, obj.fun())   # 200 201
 
 # -------------------------------------
 class Left:
@@ -294,10 +301,11 @@ obj = Sub()
 print(obj.var, obj.var_left, obj.var_right, obj.fun())# L LL RR Left
 
 # -------------------------------------
-# Do you need anything more? Just make a small amendment in the code - replace: 
-# class Sub(Left, Right): with: class Sub(Right, Left):, then run the program again, and see what happens.
+# - replace: 
+# class Sub(Left, Right): with: class Sub(Right, Left):, 
+# then run the program again, and see what happens.
 
-# What do you see now? We see:
+# output:
 # R LL RR Right
 # -------------------------------------
 class One:
@@ -305,6 +313,7 @@ class One:
         print("do_it from One")
 
     def doanything(self):
+        print(self) 
         self.do_it()
 
 
@@ -316,8 +325,11 @@ class Two(One):
 one = One()
 two = Two()
 
-one.doanything()    # do_it from One
+one.doanything()    # <__main__.One object at 0x1081517d0> 
+#                   # do_it from One
+
 two.doanything()    # do_it from Two
+#                   # <__main__.Two object at 0x108151d10>
 
 # -------------------------------------
 
@@ -420,12 +432,19 @@ tracked.turn(False)
 
 # a single inheritance class is always simpler, safer, and easier to understand and maintain;
 
-# multiple inheritance is always risky, as you have many more opportunities to make a mistake in identifying these parts of the superclasses which will effectively influence the new class;
+# multiple inheritance is always risky, as you have many more opportunities 
+# to make a mistake in identifying these parts of the superclasses which will 
+# effectively influence the new class;
 
-# multiple inheritance may make overriding extremely tricky; moreover, using the super() function becomes ambiguous
+# multiple inheritance may make overriding extremely tricky; moreover, 
+# using the super() function becomes ambiguous
 # -------------------------------------
-# multiple inheritance violates the single responsibility principle (more details here: https://en.wikipedia.org/wiki/Single_responsibility_principle) as it makes a new class of two (or more) classes that know nothing about each other;
-# we strongly suggest multiple inheritance as the last of all possible solutions - if you really need the many different functionalities offered by different classes, composition may be a better alternative.
+# multiple inheritance violates the single responsibility principle 
+# (more details here: https://en.wikipedia.org/wiki/Single_responsibility_principle) 
+# as it makes a new class of two (or more) classes that know nothing about each other;
+# we strongly suggest multiple inheritance as the last of all possible solutions 
+# - if you really need the many different functionalities offered by different classes, 
+# composition may be a better alternative.
 
 # -------------------------------------
 # What is Method Resolution Order (MRO) and why is it that not all inheritances make sense?
@@ -558,7 +577,12 @@ object.m_top()
 
 
 # -------------------------------------
+<<<<<<< HEAD
 # 1. A method named __str__() is responsible for converting an object's contents into a (more or less) readable string. 
+=======
+# 1. A method named __str__() is responsible for converting an object's contents into a 
+# (more or less) readable string. 
+>>>>>>> a7a4d426839414fb479c24d76855138e2d6c0798
 # You can redefine it if you want your object to be able to present itself in a more elegant form. 
 # For example:
 
@@ -577,7 +601,8 @@ print(the_mouse)  # Prints "mickey".
 
 
 # -------------------------------------
-# 2. A function named issubclass(Class_1, Class_2) is able to determine if Class_1 is a subclass of Class_2. For example:
+# 2. A function named issubclass(Class_1, Class_2) is able to determine if Class_1 is a subclass of Class_2. 
+# For example:
 class Mouse:
     pass
 
