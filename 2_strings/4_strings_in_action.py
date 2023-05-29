@@ -15,7 +15,8 @@ print('alpha' != 'Alpha')
 print('A'>'a')  # False.  65>97? NO
 print('b'>'B')  # True      98 > 66? YES
 
-# When you compare two strings of different lengths and the shorter one is identical to the longer one's beginning, the longer string is considered greater.
+# When you compare two strings of different lengths and the shorter one is identical to the longer one's beginning, 
+# the longer string is considered greater.
 print('alpha' < 'alphabet')     # True 
 print('beta' > 'Beta')          # True 
 print('ali ibrahim' > 'ali')    # True 

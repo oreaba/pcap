@@ -31,7 +31,6 @@ class ExampleClass:
     def set_second(self, val = 2):
         self.__second = val
 
-
 example_object_1 = ExampleClass()
 example_object_2 = ExampleClass(2)
 
