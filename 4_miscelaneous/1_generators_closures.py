@@ -13,6 +13,13 @@ for i in range(5):
 
 
 # -------------------------------------
+# How to create generators?
+# Method 1 = To make a class    return a generator = use __iter__ and __next__ magic (or dunder) methods
+# Method 2 = To make a function return a generator = use the 'yield' statement
+# Method 3 = To make a statment return a generator = use the parantheses ()
+# -------------------------------------
+
+# Method 1 = To make a class object as a generator = use __iter__ and __next__ magic (or dunder) methods
 # Generators - where to find them: continued
 class Fib:
     def __init__(self, nn):
@@ -122,7 +129,8 @@ for i in object:
 # 13
 # 21
 # -------------------------------------
-# The yield statement
+# Method 2 = To make a function return a generator = use the 'yield' statement
+
 # You may think of the yield keyword as a smarter sibling of the return statement, with one essential difference.
 
 def fun(n):
@@ -140,6 +148,7 @@ def fun(n):
 # and executing the yield statement has some very interesting effects.
 # First of all, it provides the value of the expression specified after the yield keyword, just like return, 
 # but doesn't lose the state of the function.
+
 # All the variables' values are frozen, and wait for the next invocation, 
 # when the execution is resumed (not taken from scratch, like after return).
 
@@ -153,7 +162,7 @@ def fun(n):
 
 
 # -------------------------------------
-# How to build a generator
+# Example - building a generator from a function
 def fun(n):
     for i in range(n):
         yield i
@@ -229,7 +238,7 @@ def powers_of_2(n):
 
 
 for i in range(20):
-    if i in powers_of_2(4):
+    if i in powers_of_2(4):     # stops the iteration once the i is found in the list - so I don't have to go through the entier list or fetch it in memory
         print(i)
 
 # 1
@@ -238,7 +247,7 @@ for i in range(20):
 # 8
 
 # -------------------------------------
-# The Fibanacci number generator
+# The Fibanacci number generator (as a function)
 
 # Now let's see a Fibonacci number generator, and ensure that it looks much better 
 # than the objective version based on the direct iterator protocol implementation.
@@ -303,6 +312,8 @@ the_list = [1 for x in range(10) if x % 2 == 0]     # without else
 the_list = [x in range(10) if x % 2 == 0 else 0]
 
 # -------------------------------------
+# Method 3 = To make a statment return a generator = use the parantheses ()
+
 # List comprehensions vs. generators
 # Just one change can turn any list comprehension into a generator.
 # replace [] with ()
@@ -330,6 +341,7 @@ print()
 # -------------------------------------
 # Of course, saving either the list or the generator is not necessary 
 # - you can create them exactly in the place where you need them - just like here:
+
 for v in [1 if x % 2 == 0 else 0 for x in range(10)]:    # LIST
     print(v, end=" ")
 print()
@@ -459,7 +471,7 @@ from random import seed, randint
 
 seed()
 data = [randint(-10,10) for x in range(5)]
-filtered = list(filter(lambda x: x > 0 and x % 2 == 0, data))
+filtered = list(filter(lambda x: x > 0 and x % 2 == 0, data))   # filters positive even numbers
 
 print(data)
 print(filtered)
