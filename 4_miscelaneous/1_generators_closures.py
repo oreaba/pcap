@@ -481,7 +481,7 @@ print(filtered)
 
 
 # -------------------------------------
-# A brief look at closures
+# A brief look at closures          (closures are used in decorators)
 
 # Let's start with a definition: 
 # closure is a technique which allows the storing of values in spite of the fact that the context 

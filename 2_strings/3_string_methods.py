@@ -280,3 +280,16 @@ print("I know that I know nothing.".swapcase())
 # isspace() – does the string consists only of white spaces?
 # startswith() – does the string begin with a given substring?
 # endswith() – does the string end with a given substring?
+
+
+
+# -------------------------------------
+sent = "Holidays can be a fun time when you have good company!"
+phrase = sent
+phrase = phrase + " Holidays can also be fun on your own!"
+
+# Could aliasing cause potential confusion in this problem?
+
+# no
+
+# ✔️ Since a string is immutable, aliasing won't be as confusing. Beware of using something like item = item + new_item with mutable objects though because it creates a new object. However, when we use += then that doesn't happen.
